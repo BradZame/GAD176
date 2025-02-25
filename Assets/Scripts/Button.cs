@@ -1,7 +1,11 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Button : MonoBehaviour
 {
+
+    public UnityEvent buttonPressed;
+    
     [SerializeField] private GameObject button;
     [SerializeField] private AudioClip buttonPressSound;
     private AudioSource audioSource;
@@ -38,6 +42,11 @@ public class Button : MonoBehaviour
             if (audioSource != null && buttonPressSound != null)
             {
                 audioSource.Play();
+            }
+
+            if (button != null)
+            {
+                buttonPressed.Invoke();
             }
         }
     }

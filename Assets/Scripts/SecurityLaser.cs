@@ -27,9 +27,21 @@ public class SecurityLaser : MonoBehaviour
         {
             DrawLaser();
         }
-        else
+       
+    }
+
+    public void ToggleLasers()
+    {
+        isLaserOn = !isLaserOn;
+        UpdateLaser();
+    }
+
+    private void UpdateLaser()
+    {
+        lineRenderer.enabled = isLaserOn;
+        if (isLaserOn)
         {
-            lineRenderer.enabled = false;
+            DrawLaser();
         }
     }
   
