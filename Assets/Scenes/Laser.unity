@@ -379,7 +379,11 @@ GameObject:
   m_Component:
   - component: {fileID: 104273796}
   - component: {fileID: 104273798}
+<<<<<<< HEAD
   - component: {fileID: 104273799}
+=======
+  - component: {fileID: 104273797}
+>>>>>>> feature/laser
   m_Layer: 0
   m_Name: Laser
   m_TagString: Untagged
@@ -403,6 +407,26 @@ Transform:
   - {fileID: 36161972}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
+=======
+--- !u!114 &104273797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104273795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e3b8f04c936b8c4a8f57fcba9beea7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineRenderer: {fileID: 104273798}
+  laserDiode: {fileID: 36161971}
+  laserLength: 10
+  isLaserOn: 1
+  maxBounces: 5
+>>>>>>> feature/laser
 --- !u!120 &104273798
 LineRenderer:
   serializedVersion: 2
@@ -510,6 +534,7 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+<<<<<<< HEAD
 --- !u!114 &104273799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,6 +552,8 @@ MonoBehaviour:
   laserLength: 10
   isLaserOn: 1
   maxBounces: 5
+=======
+>>>>>>> feature/laser
 --- !u!1 &846589616
 GameObject:
   m_ObjectHideFlags: 0

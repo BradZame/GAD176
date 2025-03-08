@@ -27,6 +27,7 @@ public class SecurityLaser : MonoBehaviour
         {
             DrawLaser();
         }
+<<<<<<< HEAD
        
     }
 
@@ -42,6 +43,11 @@ public class SecurityLaser : MonoBehaviour
         if (isLaserOn)
         {
             DrawLaser();
+=======
+        else
+        {
+            lineRenderer.enabled = false;
+>>>>>>> feature/laser
         }
     }
   
