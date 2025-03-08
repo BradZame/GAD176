@@ -27,8 +27,8 @@ public class SecurityLaser : MonoBehaviour
         {
             DrawLaser();
         }
-<<<<<<< HEAD
-       
+
+
     }
 
     public void ToggleLasers()
@@ -43,70 +43,71 @@ public class SecurityLaser : MonoBehaviour
         if (isLaserOn)
         {
             DrawLaser();
-=======
+        }
         else
         {
             lineRenderer.enabled = false;
->>>>>>> feature/laser
+
         }
     }
-  
-  
+
+
+
     public void DrawLaser()
-    {
-        if (laserDiode == null)
         {
-            Debug.Log("assign the laser diode");
-            return;
-        }
-
-
-        laserHits.Clear();
-
-
-      
-        Vector3 startPoint = laserDiode.transform.position;
-        Vector3 laserDirection = laserDiode.transform.forward;
-
-
-        laserHits.Add(startPoint);
-
-
-        Vector3 currentPoint = startPoint;
-
-
-        for (int bounce = 0; bounce < maxBounces; bounce++)
-        {
-            RaycastHit hitInfo;
-
-
-            bool hitSomething = Physics.Raycast(currentPoint, laserDirection, out hitInfo, laserLength);
-
-
-            if (hitSomething)
+            if (laserDiode == null)
             {
-                laserHits.Add(hitInfo.point);
-                laserDirection = Vector3.Reflect(laserDirection, hitInfo.normal);
-                currentPoint = hitInfo.point + (laserDirection * 0.1f);
+                Debug.Log("assign the laser diode");
+                return;
             }
-            else
+
+
+            laserHits.Clear();
+
+
+
+            Vector3 startPoint = laserDiode.transform.position;
+            Vector3 laserDirection = laserDiode.transform.forward;
+
+
+            laserHits.Add(startPoint);
+
+
+            Vector3 currentPoint = startPoint;
+
+
+            for (int bounce = 0; bounce < maxBounces; bounce++)
             {
-                laserHits.Add(currentPoint + (laserDirection * laserLength));
-                break;
+                RaycastHit hitInfo;
+
+
+                bool hitSomething = Physics.Raycast(currentPoint, laserDirection, out hitInfo, laserLength);
+
+
+                if (hitSomething)
+                {
+                    laserHits.Add(hitInfo.point);
+                    laserDirection = Vector3.Reflect(laserDirection, hitInfo.normal);
+                    currentPoint = hitInfo.point + (laserDirection * 0.1f);
+                }
+                else
+                {
+                    laserHits.Add(currentPoint + (laserDirection * laserLength));
+                    break;
+                }
             }
+
+
+            lineRenderer.positionCount = laserHits.Count;
+
+
+            for (int i = 0; i < laserHits.Count; i++)
+            {
+                lineRenderer.SetPosition(i, laserHits[i]);
+            }
+
+
+            lineRenderer.enabled = true;
         }
-
-
-        lineRenderer.positionCount = laserHits.Count;
-
-
-        for (int i = 0; i < laserHits.Count; i++)
-        {
-            lineRenderer.SetPosition(i, laserHits[i]);
-        }
-
-
-        lineRenderer.enabled = true;
     }
-}
 
