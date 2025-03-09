@@ -83,7 +83,7 @@ public class SecurityLaser : MonoBehaviour
 
                 bool hitSomething = Physics.Raycast(currentPoint, laserDirection, out hitInfo, laserLength);
 
-
+ 
                 if (hitSomething)
                 {
                     laserHits.Add(hitInfo.point);

@@ -28,17 +28,17 @@ public class PlayerRaycast : MonoBehaviour
             Debug.Log(hitInfo.transform.gameObject.name);
         }
     
-        // If the object is a child run RaycastHitChild()
-        if (hitInfo.transform.IsChildOf(transform))
-        {
-            RaycastHitChild(hitInfo);
-        }
+        // // If the object is a child run RaycastHitChild()
+        // if (hitInfo.transform.IsChildOf(transform))
+        // {
+        //     RaycastHitChild(hitInfo);
+        // }
     }
 
 
-    private void RaycastHitChild(RaycastHit hitInfo)
-    {
-        Debug.Log("Test Complete");
-        
-    }
+    // private void RaycastHitChild(RaycastHit hitInfo)
+    // {
+    //     Debug.Log("Test Complete");
+    //     
+    // }
 }
