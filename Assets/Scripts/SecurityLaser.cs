@@ -1,34 +1,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SecurityLaser : MonoBehaviour
+public class SecurityLaser : Security
 {
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private GameObject laserDiode;
     [SerializeField] private float laserLength = 10f;
     [SerializeField] private bool isLaserOn = true;
     [SerializeField] private int maxBounces = 5;
+    [SerializeField] private LayerMask ignoreLayers;
 
 
     private List<Vector3> laserHits;
 
 
-    void Start()
+    public override void Start()
     {
+        base.Start();
+
         lineRenderer.startWidth = 0.1f;
         lineRenderer.endWidth = 0.1f;
         laserHits = new List<Vector3>();
+
+        Debug.Log("SecurityLaser Start called.");
     }
 
 
-    void Update()
+    public override void Update()
     {
+        base.Update();
+
         if (isLaserOn)
         {
             DrawLaser();
         }
-
-
     }
 
     public void ToggleLasers()
@@ -47,67 +52,66 @@ public class SecurityLaser : MonoBehaviour
         else
         {
             lineRenderer.enabled = false;
-
         }
     }
-
-
 
     public void DrawLaser()
+    {
+        if (laserDiode == null)
         {
-            if (laserDiode == null)
+            Debug.Log("Assign the laser diode.");
+            return;
+        }
+
+        laserHits.Clear();
+
+        Vector3 startPoint = laserDiode.transform.position;
+        Vector3 laserDirection = laserDiode.transform.forward;
+
+        laserHits.Add(startPoint);
+
+        Vector3 currentPoint = startPoint;
+
+        for (int bounce = 0; bounce < maxBounces; bounce++)
+        {
+            RaycastHit hitInfo;
+
+            bool hitSomething = Physics.Raycast(currentPoint, laserDirection, out hitInfo, laserLength, ~ignoreLayers);
+
+            if (hitSomething)
             {
-                Debug.Log("assign the laser diode");
-                return;
-            }
-
-
-            laserHits.Clear();
-
-
-
-            Vector3 startPoint = laserDiode.transform.position;
-            Vector3 laserDirection = laserDiode.transform.forward;
-
-
-            laserHits.Add(startPoint);
-
-
-            Vector3 currentPoint = startPoint;
-
-
-            for (int bounce = 0; bounce < maxBounces; bounce++)
-            {
-                RaycastHit hitInfo;
-
-
-                bool hitSomething = Physics.Raycast(currentPoint, laserDirection, out hitInfo, laserLength);
-
- 
-                if (hitSomething)
+                laserHits.Add(hitInfo.point);
+                if (hitInfo.collider.CompareTag("Player"))
                 {
-                    laserHits.Add(hitInfo.point);
-                    laserDirection = Vector3.Reflect(laserDirection, hitInfo.normal);
-                    currentPoint = hitInfo.point + (laserDirection * 0.1f);
-                }
-                else
-                {
-                    laserHits.Add(currentPoint + (laserDirection * laserLength));
+                    Debug.Log("Laser Hit Player ");
+                    alarmStatus.alarmTripped = true;
                     break;
                 }
+
+                if (hitInfo.collider.CompareTag("NPC"))
+                {
+                    Debug.Log("Laser Hit NPC ");
+                    alarmStatus.alarmTripped = true;
+                    break;
+                }
+
+                laserDirection = Vector3.Reflect(laserDirection, hitInfo.normal);
+                currentPoint = hitInfo.point + (laserDirection * 0.1f);
             }
-
-
-            lineRenderer.positionCount = laserHits.Count;
-
-
-            for (int i = 0; i < laserHits.Count; i++)
+            else
             {
-                lineRenderer.SetPosition(i, laserHits[i]);
+                laserHits.Add(currentPoint + (laserDirection * laserLength));
+                break;
             }
-
-
-            lineRenderer.enabled = true;
         }
-    }
 
+        lineRenderer.positionCount = laserHits.Count;
+
+        for (int i = 0; i < laserHits.Count; i++)
+        {
+            lineRenderer.SetPosition(i, laserHits[i]);
+        }
+
+        lineRenderer.enabled = true;
+    }
+}

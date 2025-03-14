@@ -1,23 +1,26 @@
 using UnityEngine;
 
-public class SecurityCamera : MonoBehaviour
+public class SecurityCamera : Security
 {
     public float cameraSwingSpeed = 0.1f;
     public float cameraSwingAngle = 45f;
 
     private float startingCameraRotation;
 
-    void Start()
+
+    public override void Start()
     {
+        base.Start();
         startingCameraRotation = transform.eulerAngles.y;
     }
-    
-    
-    // Update is called once per frame
-    void Update()
+
+
+    public override void Update()
     {
+        base.Update();
+
+
         float angle = Mathf.Sin(Time.time * cameraSwingSpeed) * cameraSwingAngle;
         transform.rotation = Quaternion.Euler(0, startingCameraRotation + angle, 0);
-        
     }
 }

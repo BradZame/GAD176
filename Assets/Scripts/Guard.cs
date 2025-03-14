@@ -1,21 +1,28 @@
 using UnityEngine;
 
-public class Guard : MonoBehaviour
+public class Guard : Security
 {
-    public Transform player;
     public Rigidbody rb;
-
     [SerializeField] private float speed = 10f;
     [SerializeField] private float turnSpeed = 10f;
 
-    void FixedUpdate()
-    {
-        if (player == null)
-        {
-            return;
-        }
 
-        ChasePlayer();
+    public override void Start()
+    {
+        base.Start();
+        if (alarmStatus != null)
+        {
+            alarmStatus.alarmTripped = false;
+        }
+    }
+
+
+    public override void FixedUpdate()
+    {
+        if (alarmStatus.alarmTripped == true)
+        {
+            ChasePlayer();
+        }
     }
 
     private void ChasePlayer()
@@ -24,10 +31,8 @@ public class Guard : MonoBehaviour
         Vector3 moveDirection = directionToPlayer * speed;
 
         rb.AddForce(moveDirection);
-        
+
         Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
-        
-       
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
     }
 }

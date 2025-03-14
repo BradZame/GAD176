@@ -134,8 +134,8 @@ GameObject:
   - component: {fileID: 12838103}
   - component: {fileID: 12838102}
   m_Layer: 0
-  m_Name: Cylinder
-  m_TagString: Untagged
+  m_Name: Guard
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1862419823}
+  alarmStatus: {fileID: 11400000, guid: 061e2c4812358fa4ca1354ae57c131a3, type: 2}
   rb: {fileID: 12838103}
   speed: 2
   turnSpeed: 100
@@ -1079,13 +1080,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5275667628170963895, guid: a6f920696e8d2d84c92375aea82623fa, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1862419823}
+    - target: {fileID: 5275667628170963895, guid: a6f920696e8d2d84c92375aea82623fa, type: 3}
       propertyPath: laserDiode
       value: 
       objectReference: {fileID: 882316159}
     - target: {fileID: 5275667628170963895, guid: a6f920696e8d2d84c92375aea82623fa, type: 3}
+      propertyPath: alarmStatus
+      value: 
+      objectReference: {fileID: 11400000, guid: 061e2c4812358fa4ca1354ae57c131a3, type: 2}
+    - target: {fileID: 5275667628170963895, guid: a6f920696e8d2d84c92375aea82623fa, type: 3}
       propertyPath: lineRenderer
       value: 
       objectReference: {fileID: 1874891162}
+    - target: {fileID: 5275667628170963895, guid: a6f920696e8d2d84c92375aea82623fa, type: 3}
+      propertyPath: ignoreLayers.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1109,7 +1122,7 @@ GameObject:
   - component: {fileID: 1862419824}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1438,6 +1451,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SecurityCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 8631717518227345351, guid: 34e417b4e46724748828239ac04c4518, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1862419823}
+    - target: {fileID: 8631717518227345351, guid: 34e417b4e46724748828239ac04c4518, type: 3}
+      propertyPath: alarmStatus
+      value: 
+      objectReference: {fileID: 11400000, guid: 061e2c4812358fa4ca1354ae57c131a3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
