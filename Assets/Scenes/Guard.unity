@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 12838104}
   - component: {fileID: 12838103}
   - component: {fileID: 12838102}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Guard
   m_TagString: NPC
   m_Icon: {fileID: 0}
@@ -1551,7 +1551,7 @@ GameObject:
   - component: {fileID: 2134925721}
   - component: {fileID: 2134925720}
   - component: {fileID: 2134925719}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
