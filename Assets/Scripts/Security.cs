@@ -6,10 +6,14 @@ public class Security : MonoBehaviour
     public AlarmStatus alarmStatus;
 
 
-    #region Virtual Overrides
+ 
 
     public virtual void Start()
     {
+        if (alarmStatus != null)
+        {
+            alarmStatus.alarmTripped = false;
+        }
     }
 
     public virtual void Update()
@@ -20,5 +24,5 @@ public class Security : MonoBehaviour
     {
     }
 
-    #endregion
+    
 }

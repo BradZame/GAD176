@@ -6,11 +6,9 @@ public class SecurityLaser : Security
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private GameObject laserDiode;
     [SerializeField] private float laserLength = 10f;
-    [SerializeField] private bool isLaserOn = true;
-    [SerializeField] private int maxBounces = 5;
     [SerializeField] private LayerMask ignoreLayers;
-
-
+    private bool isLaserOn = true;
+    private int maxBounces = 5;
     private List<Vector3> laserHits;
 
 
@@ -84,13 +82,6 @@ public class SecurityLaser : Security
                 if (hitInfo.collider.CompareTag("Player"))
                 {
                     Debug.Log("Laser Hit Player ");
-                    alarmStatus.alarmTripped = true;
-                    break;
-                }
-
-                if (hitInfo.collider.CompareTag("NPC"))
-                {
-                    Debug.Log("Laser Hit NPC ");
                     alarmStatus.alarmTripped = true;
                     break;
                 }

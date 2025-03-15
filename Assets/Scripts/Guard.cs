@@ -5,18 +5,7 @@ public class Guard : Security
     public Rigidbody rb;
     [SerializeField] private float speed = 10f;
     [SerializeField] private float turnSpeed = 10f;
-
-
-    public override void Start()
-    {
-        base.Start();
-        if (alarmStatus != null)
-        {
-            alarmStatus.alarmTripped = false;
-        }
-    }
-
-
+    
     public override void FixedUpdate()
     {
         if (alarmStatus.alarmTripped == true)
