@@ -1252,11 +1252,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 413677794534170641, guid: 34e417b4e46724748828239ac04c4518, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -18.83
+      value: -16.61
       objectReference: {fileID: 0}
     - target: {fileID: 413677794534170641, guid: 34e417b4e46724748828239ac04c4518, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.57
+      value: 8.44
       objectReference: {fileID: 0}
     - target: {fileID: 413677794534170641, guid: 34e417b4e46724748828239ac04c4518, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1294,6 +1294,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SecurityCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 8631717518227345351, guid: 34e417b4e46724748828239ac04c4518, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1862419823}
+    - target: {fileID: 8631717518227345351, guid: 34e417b4e46724748828239ac04c4518, type: 3}
+      propertyPath: alarmStatus
+      value: 
+      objectReference: {fileID: 11400000, guid: 061e2c4812358fa4ca1354ae57c131a3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1481,7 +1489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2035439880191115448, guid: b1023480fe34b9940a24c64eda9ddcb5, type: 3}
       propertyPath: m_Mass
-      value: 20
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3274124346956014192, guid: b1023480fe34b9940a24c64eda9ddcb5, type: 3}
       propertyPath: m_Name
