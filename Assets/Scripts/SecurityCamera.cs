@@ -5,10 +5,9 @@ public class SecurityCamera : Security
     public float cameraSwingSpeed = 0.1f;
     public float cameraSwingAngle = 45f;
     public float viewDistance = 10f;
-    
     private float startingCameraRotation;
     private float distanceToPlayer;
-
+    [SerializeField] public float rayDownAngle = 90f;
 
     public override void Start()
     {
@@ -20,10 +19,13 @@ public class SecurityCamera : Security
     public override void Update()
     {
         base.Update();
-
+        
+        Vector3 downwardDirection = Quaternion.Euler(rayDownAngle, 0, 0) * transform.forward;
         RaycastHit hit;
-        Ray lineOfSightRay = new Ray(transform.position, transform.forward);
-        Debug.DrawLine(transform.position, transform.position + transform.forward * viewDistance, Color.red);
+        
+      
+        Ray lineOfSightRay = new Ray(transform.position, downwardDirection);
+        Debug.DrawLine(transform.position, transform.position + downwardDirection * viewDistance, Color.red);
 
         if (Physics.Raycast(lineOfSightRay, out hit, viewDistance))
         {
@@ -31,6 +33,7 @@ public class SecurityCamera : Security
             {
                 distanceToPlayer = (hit.point - transform.position).magnitude;
                 alarmStatus.alarmTripped = true;
+                Debug.Log("Player has been seen on camera");
             }
         }
         else
