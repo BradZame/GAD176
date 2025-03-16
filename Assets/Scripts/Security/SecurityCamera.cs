@@ -7,8 +7,7 @@ public class SecurityCamera : Security
     [SerializeField] private float viewDistance = 10f; // How far the camera can see
     [SerializeField] private float rayDownAngle = 90f; // Raycast angle for player detection 
 
-    private float startingCameraRotation;
-    private float distanceToPlayer;
+    private float startingCameraRotation; // Stores the initial horizontal starting point
 
 
     public override void Start()
@@ -37,15 +36,14 @@ public class SecurityCamera : Security
                 Debug.Log("Player has been seen on camera");
             }
         }
-        else
-        {
-            distanceToPlayer = viewDistance;
-        }
-
-        AdjustCameraSwing(distanceToPlayer);
+        
+        AdjustCameraSwing(); // Swings camera over time via function 
     }
 
-    private void AdjustCameraSwing(float distanceToPlayer)
+/// <summary>
+/// Adjusts the camera swing by using a sine wave 
+/// </summary>
+    private void AdjustCameraSwing()
     {
         float angle = Mathf.Sin(Time.time * cameraSwingSpeed) * cameraSwingAngle;
         transform.rotation = Quaternion.Euler(0, startingCameraRotation + angle, 0);

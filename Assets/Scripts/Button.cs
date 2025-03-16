@@ -3,14 +3,13 @@ using UnityEngine.Events;
 
 public class Button : MonoBehaviour
 {
-
     public UnityEvent buttonPressed;
-    
+
     [SerializeField] private GameObject button;
     [SerializeField] private AudioClip buttonPressSound;
     private AudioSource audioSource;
-    private Vector3 buttonMoveDistance = new Vector3(0, -0.05f, 0); 
-    private Vector3 initialPosition; 
+    private Vector3 buttonMoveDistance = new Vector3(0, -0.05f, 0);
+    private Vector3 initialPosition;
     private bool isButtonUp = false;
 
     void Start()
@@ -21,32 +20,34 @@ public class Button : MonoBehaviour
 
     void Update()
     {
-        ButtonPressed();
     }
 
-    private void ButtonPressed()
+    private void OnTriggerStay(Collider other)
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (other.CompareTag("Player"))
         {
-            if (isButtonUp)
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                button.transform.position = initialPosition;
-            }
-            else
-            {
-                button.transform.position = initialPosition + buttonMoveDistance;
-            }
+                if (isButtonUp)
+                {
+                    button.transform.position = initialPosition;
+                }
+                else
+                {
+                    button.transform.position = initialPosition + buttonMoveDistance;
+                }
 
-            isButtonUp = !isButtonUp;
+                isButtonUp = !isButtonUp;
 
-            if (audioSource != null && buttonPressSound != null)
-            {
-                audioSource.Play();
-            }
+                if (audioSource != null && buttonPressSound != null)
+                {
+                    audioSource.Play();
+                }
 
-            if (button != null)
-            {
-                buttonPressed.Invoke();
+                if (button != null)
+                {
+                    buttonPressed.Invoke();
+                }
             }
         }
     }
