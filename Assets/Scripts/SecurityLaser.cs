@@ -7,9 +7,9 @@ public class SecurityLaser : Security
     [SerializeField] private GameObject laserDiode;
     [SerializeField] private float laserLength = 10f;
     [SerializeField] private LayerMask ignoreLayers;
-    private bool isLaserOn = true;
-    private int maxBounces = 5;
-    private List<Vector3> laserHits;
+    protected bool isLaserOn = true;
+    protected int maxBounces = 5;
+    protected List<Vector3> laserHits;
 
 
     public override void Start()

@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class SecurityCamera : Security
 {
-    public float cameraSwingSpeed = 0.1f;
-    public float cameraSwingAngle = 45f;
-    public float viewDistance = 10f;
+    [SerializeField] private float cameraSwingSpeed = 0.1f;
+    [SerializeField] private float cameraSwingAngle = 45f;
+    [SerializeField] private float viewDistance = 10f; // How far the camera can see
+    [SerializeField] private float rayDownAngle = 90f; // Raycast angle for player detection 
+
     private float startingCameraRotation;
     private float distanceToPlayer;
-    [SerializeField] public float rayDownAngle = 90f;
+
 
     public override void Start()
     {
@@ -19,19 +21,18 @@ public class SecurityCamera : Security
     public override void Update()
     {
         base.Update();
-        
-        Vector3 downwardDirection = Quaternion.Euler(rayDownAngle, 0, 0) * transform.forward;
-        RaycastHit hit;
-        
-      
-        Ray lineOfSightRay = new Ray(transform.position, downwardDirection);
-        Debug.DrawLine(transform.position, transform.position + downwardDirection * viewDistance, Color.red);
 
-        if (Physics.Raycast(lineOfSightRay, out hit, viewDistance))
+        Vector3 downwardDirection = Quaternion.Euler(rayDownAngle, 0, 0) * transform.forward; // Calculate the down direction for the raycast 
+        RaycastHit hit;
+
+
+        Ray lineOfSightRay = new Ray(transform.position, downwardDirection); // Creates a ray that checks for player
+        Debug.DrawLine(transform.position, transform.position + downwardDirection * viewDistance, Color.red); // Shows that ray in the Scene window
+
+        if (Physics.Raycast(lineOfSightRay, out hit, viewDistance)) // Checks if that ray has hit something 
         {
-            if (hit.collider.tag == "Player")
+            if (hit.collider.tag == "Player") // If ray hits player 
             {
-                distanceToPlayer = (hit.point - transform.position).magnitude;
                 alarmStatus.alarmTripped = true;
                 Debug.Log("Player has been seen on camera");
             }
@@ -40,10 +41,10 @@ public class SecurityCamera : Security
         {
             distanceToPlayer = viewDistance;
         }
+
         AdjustCameraSwing(distanceToPlayer);
-        
     }
-    
+
     private void AdjustCameraSwing(float distanceToPlayer)
     {
         float angle = Mathf.Sin(Time.time * cameraSwingSpeed) * cameraSwingAngle;
