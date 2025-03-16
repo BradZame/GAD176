@@ -39,6 +39,7 @@ public class SecurityLaser : Security
     /// </summary>
     public void ToggleLasers()
     {
+        Debug.Log("Toggling laser");
         isLaserOn = !isLaserOn;
         UpdateLaser();
     }
@@ -46,7 +47,7 @@ public class SecurityLaser : Security
     /// <summary>
     /// Updates the visual state of the laser 
     /// </summary>
-    private void UpdateLaser()
+    public void UpdateLaser()
     {
         lineRenderer.enabled = isLaserOn; // Enable the line renderer  
         if (isLaserOn)
@@ -66,7 +67,7 @@ public class SecurityLaser : Security
     {
         if (laserDiode == null)
         {
-            Debug.Log("Assign the laser diode."); // assign the diode in inspector 
+            Debug.LogError("Assign the laser diode."); // assign the diode in inspector 
             return;
         }
 
@@ -93,7 +94,7 @@ public class SecurityLaser : Security
                 if (hitInfo.collider.CompareTag("Player")) // if the object it hits is a player 
                 {
                     Debug.Log("Laser Hit Player "); 
-                    alarmStatus.alarmTripped = true; // Trip the alarm
+                    SetAlarmStatus(true);; // Trip the alarm
                     break;
                 }
 
@@ -103,6 +104,7 @@ public class SecurityLaser : Security
             else // if the laser doesnt hit anything 
             {
                 laserHits.Add(currentPoint + (laserDirection * laserLength)); // Add the last point if no hit
+                Debug.Log("Laser didn't hit anything");
                 break; // Stop if there's nothing to hit
             }
         }

@@ -32,7 +32,7 @@ public class SecurityCamera : Security
         {
             if (hit.collider.tag == "Player") // If ray hits player 
             {
-                alarmStatus.alarmTripped = true;
+                SetAlarmStatus(true);
                 Debug.Log("Player has been seen on camera");
             }
         }

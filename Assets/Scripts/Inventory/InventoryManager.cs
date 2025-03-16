@@ -7,22 +7,25 @@ public class InventoryManager : MonoBehaviour
     public GameObject inventoryUI;
     private bool inventoryOpen = false;
 
+    public bool hasKey = false;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        inventoryUI.SetActive(false);
+        // inventoryUI.SetActive(false); // Use only if you want hidden on start
+        inventoryUI.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            inventoryOpen = !inventoryOpen;
-            inventoryUI.SetActive(inventoryOpen);
-            Time.timeScale = inventoryOpen ? 0 : 1; // Pause game when inventory is open
-        }
-    }
+    // // Update is called once per frame
+    // void Update()
+    // {
+    //     // if (Input.GetKeyDown(KeyCode.Tab))   
+    //     // {
+    //     //     inventoryOpen = !inventoryOpen;
+    //     //     inventoryUI.SetActive(inventoryOpen);
+    //     //     // Time.timeScale = inventoryOpen ? 0 : 1; 
+    //     // }
+    // }
 
     public void AddItem(string itemName, int amount)
     {

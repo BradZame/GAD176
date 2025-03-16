@@ -24,6 +24,12 @@ public class Item : MonoBehaviour
             {
                 inventoryManager.AddItem(itemName, quantity);
                 itemCollected = true;
+               
+                if (itemType == ItemTypes.Key)
+                {
+                    inventoryManager.hasKey = true;
+                }
+                
                 Destroy(gameObject);
             }
         }

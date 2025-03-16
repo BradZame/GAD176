@@ -14,7 +14,7 @@ public class Guard : Security
     /// </summary>
     public override void FixedUpdate()
     {
-        if (alarmStatus.alarmTripped == true) // The alarmStatus is a scriptable object 
+        if (IsAlarmTriggered()) // // Check if the alarm has been tripped  in the ScriptableObject
         {
             ChasePlayer();
         }

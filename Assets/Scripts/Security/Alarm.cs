@@ -14,7 +14,7 @@ public class Alarm : Security
     {
         base.Update();
 
-        if (alarmStatus.alarmTripped)  // Check if the alarm has been tripped (ScriptableObject)
+        if (IsAlarmTriggered())  // Check if the alarm has been tripped  in the ScriptableObject
         {
             if (Time.time - lastFlashTime >= flashingRate) 
             {

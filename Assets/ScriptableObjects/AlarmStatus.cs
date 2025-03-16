@@ -5,4 +5,9 @@ using UnityEngine;
 public class AlarmStatus : ScriptableObject
 {
     public bool alarmTripped = false;
+
+    public void DisableAlarm()
+    {
+        alarmTripped = false;
+    }
 }
