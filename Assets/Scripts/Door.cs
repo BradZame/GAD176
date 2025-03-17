@@ -44,7 +44,7 @@ public class Door : MonoBehaviour
     /// <summary>
     /// Moves door to open position 
     /// </summary>
-    private void OpenDoor()
+    protected void OpenDoor()
     {
         if (!doorIsOpen)
         {

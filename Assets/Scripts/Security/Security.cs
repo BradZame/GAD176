@@ -48,6 +48,7 @@ public class Security : MonoBehaviour
 
     public virtual void Update()
     {
+        
     }
 
     public virtual void FixedUpdate()

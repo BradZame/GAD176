@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Guard : Security
 {
-    public Rigidbody rb;
+    [SerializeField] private Rigidbody rb;
     [SerializeField] private float chaseSpeed = 10f; // Guards chasing speed
     [SerializeField] private float turnSpeed = 10f; // Guards rotation speed when facing player
     [SerializeField] private float slowDownSpeed = 0.95f; // Slows guard down over time 
@@ -23,7 +23,7 @@ public class Guard : Security
     /// <summary>
     /// Rotates guard & starts chasing player 
     /// </summary>
-    protected void ChasePlayer()
+    private void ChasePlayer()
     {
         Vector3 directionToPlayer = (player.position - transform.position).normalized; // Calculate the direction to the player
         Vector3 moveDirection = directionToPlayer * chaseSpeed; // Move to player
